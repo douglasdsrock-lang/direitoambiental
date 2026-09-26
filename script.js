@@ -1,6 +1,74 @@
 document.addEventListener('DOMContentLoaded', () => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Progressive scroll entrances based on the motion patterns in /Referencias.
+  // Motion is enabled only after JS starts, so content remains accessible if
+  // scripts or IntersectionObserver are unavailable.
+  const revealElements = [];
+  const registerReveal = (element, variant = 'up', delay = 0) => {
+    if (!element || element.classList.contains('reveal-on-scroll')) return;
+
+    element.classList.add('reveal-on-scroll');
+    if (variant !== 'up') element.classList.add(`reveal-${variant}`);
+    element.style.setProperty('--reveal-delay', `${delay}ms`);
+    revealElements.push(element);
+  };
+
+  document.querySelectorAll('.hero-content > *').forEach((element, index) => {
+    registerReveal(element, 'up', Math.min(index * 90, 450));
+  });
+
+  document.querySelectorAll('.text-center').forEach(element => registerReveal(element));
+
+  const revealGroups = [
+    '.hero-stats-banner',
+    '.dores-grid',
+    '.method-steps-grid',
+    '.develop-grid',
+    '.target-audience-wrapper',
+    '.modules-timeline',
+    '.diff-grid',
+    '.included-list',
+    '.offer-checklist',
+    '.testimonials-grid',
+    '.bonus-grid',
+    '.faq-container'
+  ];
+
+  revealGroups.forEach(selector => {
+    document.querySelectorAll(selector).forEach(group => {
+      Array.from(group.children).forEach((element, index) => {
+        const direction = index % 2 === 0 ? 'left' : 'right';
+        registerReveal(element, direction, Math.min(index * 70, 280));
+      });
+    });
+  });
+
+  document.querySelectorAll(
+    '.dores-closing, .method-subtitle, .included-box-header, .tcc-card, .specialist-card, .pricing-card-main, .guarantee-card, .final-cta-section .container'
+  ).forEach(element => registerReveal(element, 'tilt'));
+
+  document.querySelectorAll('.section-transition svg').forEach(element => revealElements.push(element));
+
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    document.documentElement.classList.add('motion-ready');
+
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -8% 0px'
+    });
+
+    revealElements.forEach(element => revealObserver.observe(element));
+  } else {
+    revealElements.forEach(element => element.classList.add('is-visible'));
+  }
+
   // Cursor-following spotlight inspired by the Saulo Tenório cards.
   document.querySelectorAll('.pain-card').forEach(card => {
     const updateSpotlight = event => {
