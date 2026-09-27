@@ -226,9 +226,7 @@ body {
   .motion-ready .reveal-on-scroll:not(.is-visible),
   .motion-ready .reveal-on-scroll.reveal-left:not(.is-visible),
   .motion-ready .reveal-on-scroll.reveal-right:not(.is-visible),
-  .motion-ready .reveal-on-scroll.reveal-tilt:not(.is-visible),
-  .motion-ready .section-transition svg,
-  .motion-ready .section-transition:not(.is-visible) svg {
+  .motion-ready .reveal-on-scroll.reveal-tilt:not(.is-visible) {
     opacity: 1;
     transform: none;
     filter: none;
@@ -369,22 +367,24 @@ section {
 .hero-section {
   padding-top: 100px;
   padding-bottom: 120px;
-  text-align: center;
+  text-align: left;
   position: relative;
-  background-image: 
-    linear-gradient(180deg, rgba(5, 16, 12, 0.35) 0%, rgba(5, 16, 12, 0.75) 70%, var(--bg-main) 100%),
-    url('assets/b74bbed5-64ee-4dc8-a074-186c3cb70556.png');
-  background-size: cover;
-  background-position: center top;
+  background-image:
+    linear-gradient(90deg, rgba(3, 15, 10, 0.96) 0%, rgba(3, 15, 10, 0.82) 34%, rgba(3, 15, 10, 0.42) 52%, rgba(3, 15, 10, 0) 68%),
+    linear-gradient(180deg, transparent 0%, transparent 68%, var(--bg-main) 100%),
+    url('assets/fbc33abe-4768-4524-bd75-c9958b8c5451.webp');
+  background-size: 100% 100%, 100% 100%, 100% auto;
+  background-position: center, center, center top;
   background-repeat: no-repeat;
 }
 
 .hero-content {
-  max-width: 920px;
+  max-width: 1240px;
   margin: 0 auto;
 }
 
 .hero-headline {
+  max-width: 760px;
   font-family: var(--font-serif);
   font-size: 3.4rem;
   font-weight: 700;
@@ -400,8 +400,12 @@ section {
   font-size: 1.25rem;
   line-height: 1.65;
   color: var(--text-secondary);
-  max-width: 780px;
-  margin: 0 auto 36px;
+  max-width: 700px;
+  margin: 0 0 36px;
+}
+
+.hero-section .cta-wrapper {
+  align-items: flex-start;
 }
 
 .hero-support-phrase {
@@ -411,7 +415,7 @@ section {
   color: var(--emerald-300);
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 12px;
 }
 
@@ -1491,16 +1495,6 @@ section {
   transform: perspective(1100px) translate3d(0, 42px, 0) rotateX(7deg) scale(0.985);
 }
 
-.motion-ready .section-transition svg {
-  transform-origin: center bottom;
-  transition: opacity 0.9s ease, transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.motion-ready .section-transition svg:not(.is-visible) {
-  opacity: 0.35;
-  transform: scaleY(0.55);
-}
-
 /* 9. Sobre o TCC */
 .tcc-card {
   background: var(--bg-card);
@@ -2410,18 +2404,23 @@ section {
   .hero-section {
     min-height: 100svh;
     display: flex;
-    align-items: center;
-    padding: 54px 0 46px;
+    align-items: flex-start;
+    padding: calc(clamp(410px, 108vw, 490px) - 50px) 0 46px;
+    text-align: center;
     background-image:
-      linear-gradient(180deg, rgba(2, 15, 10, 0.2) 0%, rgba(3, 18, 13, 0.38) 48%, rgba(5, 16, 12, 0.92) 100%),
-      url('assets/74eaf199-83c7-4a38-a3d4-117cb99946d6.png');
-    background-size: cover;
-    background-position: center top;
+      linear-gradient(180deg, transparent 0%, transparent 38%, rgba(5, 16, 12, 0.38) 48%, rgba(5, 16, 12, 0.9) 68%, var(--bg-main) 84%),
+      url('assets/1b2ec334-716c-49a9-9a0a-0cceafdf87c8.webp');
+    background-size: 100% 100%, 100% auto;
+    background-position: center, center top;
     background-repeat: no-repeat;
   }
 
   .hero-content {
     width: 100%;
+  }
+
+  .hero-section .cta-wrapper {
+    align-items: center;
   }
 
   .hero-section .eyebrow {
@@ -2432,6 +2431,7 @@ section {
   }
 
   .hero-headline {
+    max-width: none;
     font-size: clamp(2rem, 10.5vw, 2.65rem);
     line-height: 1.05;
     margin-bottom: 18px;
@@ -2439,7 +2439,7 @@ section {
 
   .hero-subheadline {
     max-width: 34rem;
-    margin-bottom: 28px;
+    margin: 0 auto 28px;
     font-size: 1rem;
     line-height: 1.58;
     color: #c1d8cd;
@@ -2466,6 +2466,7 @@ section {
 
   .hero-support-phrase {
     margin-top: 24px;
+    justify-content: center;
     font-size: 0.9rem;
     line-height: 1.5;
   }

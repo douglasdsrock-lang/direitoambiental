@@ -48,8 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
     '.dores-closing, .method-subtitle, .included-box-header, .tcc-card, .specialist-card, .pricing-card-main, .guarantee-card, .final-cta-section .container'
   ).forEach(element => registerReveal(element, 'tilt'));
 
-  document.querySelectorAll('.section-transition svg').forEach(element => revealElements.push(element));
-
   if (!reduceMotion && 'IntersectionObserver' in window) {
     document.documentElement.classList.add('motion-ready');
 
