@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Direito Ambiental">
+  <rect width="64" height="64" rx="15" fill="#061812"/>
+  <path d="M6 18C18 4 44 3 58 17" fill="none" stroke="#52b788" stroke-width="3" stroke-linecap="round" opacity=".75"/>
+  <g fill="none" stroke="#e5b869" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M32 14v35M18 23h28M25 50h14"/>
+    <path d="m18 23-8 16m8-16 8 16M46 23l-8 16m8-16 8 16"/>
+    <path d="M9 39c1.6 5 5 7 9 7s7.4-2 9-7H9ZM37 39c1.6 5 5 7 9 7s7.4-2 9-7H37Z" fill="#e5b869" stroke="none"/>
+  </g>
+  <circle cx="32" cy="14" r="4" fill="#95d5b2"/>
+</svg>
